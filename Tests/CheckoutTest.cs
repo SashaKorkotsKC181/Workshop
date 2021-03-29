@@ -56,5 +56,31 @@ namespace Tests
 
             Assert.Equal(check.GetTotalPoints(), 10);
         }
+
+        [Fact]
+        void useOffer_addOfferPoints()
+        {
+
+            checkoutServise.AddProduct(milk_7);            
+            checkoutServise.AddProduct(bread_3);
+
+
+            checkoutServise.useOffer(new AnyGoodOffer(6, 2));
+            Check check = checkoutServise.closeCheck();
+
+            Assert.Equal(check.GetTotalPoints(), 12);
+        }
+
+        [Fact]
+        void useOffer_whenCostLessThanRequired_doNothing()
+        {           
+            checkoutServise.AddProduct(bread_3);
+
+
+            checkoutServise.useOffer(new AnyGoodOffer(6, 2));
+            Check check = checkoutServise.closeCheck();
+
+            Assert.Equal(check.GetTotalPoints(), 3);
+        }
     }
 }

@@ -28,5 +28,11 @@ namespace oop_workshop_master
             check = null;
             return closedCheck;
         }
+
+        public void useOffer(AnyGoodOffer offer)
+        {
+            if (offer.totalCost <= check.GetTotalCost())
+            check.AddPoints(offer.points);
+        }
     }
 }

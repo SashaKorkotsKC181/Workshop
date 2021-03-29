@@ -7,7 +7,7 @@ namespace Tests
     {
         private List<Product> products = new List<Product>();
 
-
+        int points = 0;
         public int GetTotalCost()
         {
             int totalCost = 0;
@@ -25,7 +25,12 @@ namespace Tests
 
         public int GetTotalPoints()
         {
-            return GetTotalCost();
+            return GetTotalCost() + points;
+        }
+
+        internal void AddPoints(int points)
+        {
+            this.points += points; 
         }
     }
 }
