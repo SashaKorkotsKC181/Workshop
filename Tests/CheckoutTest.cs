@@ -13,7 +13,6 @@ namespace Tests
         [Fact]
         void closeCheck_withAddProduct()
         {
-            checkoutServise.openCheck();
 
             
             checkoutServise.AddProduct(milk_7);
@@ -24,7 +23,6 @@ namespace Tests
         [Fact]
         void closeCheck_withAddTwoProducts()
         {
-            checkoutServise.openCheck();
 
             checkoutServise.AddProduct(milk_7);
             
@@ -46,6 +44,17 @@ namespace Tests
             checkoutServise.AddProduct(bread_3);
             Check checkBread = checkoutServise.closeCheck();
             Assert.Equal(checkBread.GetTotalCost(), 3);
+        }
+
+        [Fact]
+        void closeCheck_calcTOtalPoints()
+        {
+
+            checkoutServise.AddProduct(milk_7);            
+            checkoutServise.AddProduct(bread_3);
+            Check check = checkoutServise.closeCheck();
+
+            Assert.Equal(check.GetTotalPoints(), 10);
         }
     }
 }
