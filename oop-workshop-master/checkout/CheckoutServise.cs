@@ -28,19 +28,9 @@ namespace oop_workshop_master
             return closedCheck;
         }
 
-        public void UseOffer(AnyGoodOffer offer)
+        public void UseOffer(Offer offer)
         {
-            if (new FactorByCategoryOffer(Category.MILK, 2).GetType().IsInstanceOfType(offer))
-            {
-                FactorByCategoryOffer fbOffer = (FactorByCategoryOffer)offer;
-                int points = check.getCostByCategory(fbOffer.category);
-
-                check.AddPoints(points * (fbOffer.factor - 1));
-            }
-            else if (offer.totalCost <= check.GetTotalCost())
-            {
-                check.AddPoints(offer.points);
-            }
+            offer.Apply(check);
         }
     }
 }
