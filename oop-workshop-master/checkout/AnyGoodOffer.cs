@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Tests
+namespace oop_workshop_master
 {
     public class AnyGoodOffer
     {

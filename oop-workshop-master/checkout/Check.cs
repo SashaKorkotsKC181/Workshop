@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Tests
+namespace oop_workshop_master
 {
     public class Check
     {
@@ -31,6 +31,19 @@ namespace Tests
         internal void AddPoints(int points)
         {
             this.points += points; 
+        }
+
+        internal int getCostByCategory(Category category)
+        {
+            int costOfCategoty = 0;
+            foreach (Product prod in this.products)
+            {
+                if (prod.catagory == category)
+                {
+                    costOfCategoty += prod.price;
+                }
+            }
+            return costOfCategoty;
         }
     }
 }

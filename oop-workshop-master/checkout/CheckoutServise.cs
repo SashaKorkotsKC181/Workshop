@@ -1,5 +1,4 @@
 using System;
-using Tests;
 
 namespace oop_workshop_master
 {
@@ -29,10 +28,19 @@ namespace oop_workshop_master
             return closedCheck;
         }
 
-        public void useOffer(AnyGoodOffer offer)
+        public void UseOffer(AnyGoodOffer offer)
         {
-            if (offer.totalCost <= check.GetTotalCost())
-            check.AddPoints(offer.points);
+            if (new FactorByCategoryOffer(Category.MILK, 2).GetType().IsInstanceOfType(offer))
+            {
+                FactorByCategoryOffer fbOffer = (FactorByCategoryOffer)offer;
+                int points = check.getCostByCategory(fbOffer.category);
+
+                check.AddPoints(points * (fbOffer.factor - 1));
+            }
+            else if (offer.totalCost <= check.GetTotalCost())
+            {
+                check.AddPoints(offer.points);
+            }
         }
     }
 }

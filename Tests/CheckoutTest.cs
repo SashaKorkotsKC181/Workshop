@@ -6,7 +6,7 @@ namespace Tests
 {
     public class ChekoutTesk
     {
-        Product milk_7 = new Product(7, "Milk");
+        Product milk_7 = new Product(7, "Milk", Category.MILK);
         Product bread_3 = new Product(3, "Bread");
         CheckoutServise checkoutServise = new CheckoutServise();
 
@@ -65,7 +65,7 @@ namespace Tests
             checkoutServise.AddProduct(bread_3);
 
 
-            checkoutServise.useOffer(new AnyGoodOffer(6, 2));
+            checkoutServise.UseOffer(new AnyGoodOffer(6, 2));
             Check check = checkoutServise.closeCheck();
 
             Assert.Equal(check.GetTotalPoints(), 12);
@@ -77,10 +77,24 @@ namespace Tests
             checkoutServise.AddProduct(bread_3);
 
 
-            checkoutServise.useOffer(new AnyGoodOffer(6, 2));
+            checkoutServise.UseOffer(new AnyGoodOffer(6, 2));
             Check check = checkoutServise.closeCheck();
 
             Assert.Equal(check.GetTotalPoints(), 3);
+        }
+
+        [Fact]
+        void useOffer_factorByCategory()
+        {           
+            checkoutServise.AddProduct(milk_7);    
+            checkoutServise.AddProduct(milk_7);            
+            checkoutServise.AddProduct(bread_3);
+
+
+            checkoutServise.UseOffer(new FactorByCategoryOffer(Category.MILK, 2));
+            Check check = checkoutServise.closeCheck();
+
+            Assert.Equal(check.GetTotalPoints(), 31);
         }
     }
 }
