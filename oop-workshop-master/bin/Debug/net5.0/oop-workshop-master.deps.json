@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "oop-workshop-master/1.0.0": {
+        "runtime": {
+          "oop-workshop-master.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "oop-workshop-master/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

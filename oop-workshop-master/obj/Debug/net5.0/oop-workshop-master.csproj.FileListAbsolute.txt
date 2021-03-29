@@ -1,0 +1,16 @@
+/home/intern/Documents/Workshop/oop-workshop-master/bin/Debug/net5.0/oop-workshop-master
+/home/intern/Documents/Workshop/oop-workshop-master/bin/Debug/net5.0/oop-workshop-master.deps.json
+/home/intern/Documents/Workshop/oop-workshop-master/bin/Debug/net5.0/oop-workshop-master.runtimeconfig.json
+/home/intern/Documents/Workshop/oop-workshop-master/bin/Debug/net5.0/oop-workshop-master.runtimeconfig.dev.json
+/home/intern/Documents/Workshop/oop-workshop-master/bin/Debug/net5.0/oop-workshop-master.dll
+/home/intern/Documents/Workshop/oop-workshop-master/bin/Debug/net5.0/ref/oop-workshop-master.dll
+/home/intern/Documents/Workshop/oop-workshop-master/bin/Debug/net5.0/oop-workshop-master.pdb
+/home/intern/Documents/Workshop/oop-workshop-master/obj/Debug/net5.0/oop-workshop-master.csprojAssemblyReference.cache
+/home/intern/Documents/Workshop/oop-workshop-master/obj/Debug/net5.0/oop-workshop-master.GeneratedMSBuildEditorConfig.editorconfig
+/home/intern/Documents/Workshop/oop-workshop-master/obj/Debug/net5.0/oop-workshop-master.AssemblyInfoInputs.cache
+/home/intern/Documents/Workshop/oop-workshop-master/obj/Debug/net5.0/oop-workshop-master.AssemblyInfo.cs
+/home/intern/Documents/Workshop/oop-workshop-master/obj/Debug/net5.0/oop-workshop-master.csproj.CoreCompileInputs.cache
+/home/intern/Documents/Workshop/oop-workshop-master/obj/Debug/net5.0/oop-workshop-master.dll
+/home/intern/Documents/Workshop/oop-workshop-master/obj/Debug/net5.0/ref/oop-workshop-master.dll
+/home/intern/Documents/Workshop/oop-workshop-master/obj/Debug/net5.0/oop-workshop-master.pdb
+/home/intern/Documents/Workshop/oop-workshop-master/obj/Debug/net5.0/oop-workshop-master.genruntimeconfig.cache
