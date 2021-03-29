@@ -14,8 +14,7 @@ namespace Tests
 
             checkoutServise.AddProduct(new Product(7,"Milk"));
             Check check = checkoutServise.closeCheck();
-
-            Assert.Equal(check.getTotalCost(), 7);
+            Assert.Equal(check.GetTotalCost(), 7);
         }
 
         [Fact]
@@ -28,7 +27,7 @@ namespace Tests
             checkoutServise.AddProduct(new Product(3,"Bread"));
             Check check = checkoutServise.closeCheck();
 
-            Assert.Equal(check.getTotalCost(), 10);
+            Assert.Equal(check.GetTotalCost(), 10);
         }
     }
 }
