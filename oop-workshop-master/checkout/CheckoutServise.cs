@@ -15,12 +15,18 @@ namespace oop_workshop_master
 
         public void AddProduct(Product product)
         {
+            if (check == null)
+            {
+                openCheck();
+            }
             check.AddProduct(product);
         }
 
         public Check closeCheck()
         {
-            return check;
+            Check closedCheck = check;
+            check = null;
+            return closedCheck;
         }
     }
 }

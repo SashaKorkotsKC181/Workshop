@@ -6,13 +6,17 @@ namespace Tests
 {
     public class ChekoutTesk
     {
+        Product milk_7 = new Product(7, "Milk");
+        Product bread_3 = new Product(3, "Bread");
+        CheckoutServise checkoutServise = new CheckoutServise();
+
         [Fact]
         void closeCheck_withAddProduct()
         {
-            CheckoutServise checkoutServise = new CheckoutServise();
             checkoutServise.openCheck();
 
-            checkoutServise.AddProduct(new Product(7, "Milk"));
+            
+            checkoutServise.AddProduct(milk_7);
             Check check = checkoutServise.closeCheck();
             Assert.Equal(check.GetTotalCost(), 7);
         }
@@ -20,11 +24,11 @@ namespace Tests
         [Fact]
         void closeCheck_withAddTwoProducts()
         {
-            CheckoutServise checkoutServise = new CheckoutServise();
             checkoutServise.openCheck();
 
-            checkoutServise.AddProduct(new Product(7, "Milk"));
-            checkoutServise.AddProduct(new Product(3, "Bread"));
+            checkoutServise.AddProduct(milk_7);
+            
+            checkoutServise.AddProduct(bread_3);
             Check check = checkoutServise.closeCheck();
 
             Assert.Equal(check.GetTotalCost(), 10);
@@ -33,13 +37,13 @@ namespace Tests
         [Fact]
         void AddProduct_whenCHeckIsCLosed_opensNewCheck()
         {
-            CheckoutServise checkoutServise = new CheckoutServise();
+            
 
-            checkoutServise.AddProduct(new Product(7, "Milk"));            
+            checkoutServise.AddProduct(milk_7);            
             Check checkMilk = checkoutServise.closeCheck();
             Assert.Equal(checkMilk.GetTotalCost(), 7);
 
-            checkoutServise.AddProduct(new Product(3, "Bread"));
+            checkoutServise.AddProduct(bread_3);
             Check checkBread = checkoutServise.closeCheck();
             Assert.Equal(checkBread.GetTotalCost(), 3);
         }
