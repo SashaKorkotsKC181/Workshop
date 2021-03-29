@@ -14,7 +14,7 @@ namespace Tests
         void closeCheck_withAddProduct()
         {
 
-            
+
             checkoutServise.AddProduct(milk_7);
             Check check = checkoutServise.closeCheck();
             Assert.Equal(check.GetTotalCost(), 7);
@@ -25,7 +25,7 @@ namespace Tests
         {
 
             checkoutServise.AddProduct(milk_7);
-            
+
             checkoutServise.AddProduct(bread_3);
             Check check = checkoutServise.closeCheck();
 
@@ -35,9 +35,9 @@ namespace Tests
         [Fact]
         void AddProduct_whenCHeckIsCLosed_opensNewCheck()
         {
-            
 
-            checkoutServise.AddProduct(milk_7);            
+
+            checkoutServise.AddProduct(milk_7);
             Check checkMilk = checkoutServise.closeCheck();
             Assert.Equal(checkMilk.GetTotalCost(), 7);
 
@@ -50,7 +50,7 @@ namespace Tests
         void closeCheck_calcTOtalPoints()
         {
 
-            checkoutServise.AddProduct(milk_7);            
+            checkoutServise.AddProduct(milk_7);
             checkoutServise.AddProduct(bread_3);
             Check check = checkoutServise.closeCheck();
 
@@ -61,11 +61,11 @@ namespace Tests
         void useOffer_addOfferPoints()
         {
 
-            checkoutServise.AddProduct(milk_7);            
+            checkoutServise.AddProduct(milk_7);
             checkoutServise.AddProduct(bread_3);
 
 
-            checkoutServise.UseOffer(new AnyGoodOffer(6, 2));
+            checkoutServise.AddOffer(new AnyGoodOffer(6, 2));
             Check check = checkoutServise.closeCheck();
 
             Assert.Equal(check.GetTotalPoints(), 12);
@@ -73,11 +73,11 @@ namespace Tests
 
         [Fact]
         void useOffer_whenCostLessThanRequired_doNothing()
-        {           
+        {
             checkoutServise.AddProduct(bread_3);
 
 
-            checkoutServise.UseOffer(new AnyGoodOffer(6, 2));
+            checkoutServise.AddOffer(new AnyGoodOffer(6, 2));
             Check check = checkoutServise.closeCheck();
 
             Assert.Equal(check.GetTotalPoints(), 3);
@@ -85,13 +85,28 @@ namespace Tests
 
         [Fact]
         void useOffer_factorByCategory()
-        {           
-            checkoutServise.AddProduct(milk_7);    
-            checkoutServise.AddProduct(milk_7);            
+        {
+            checkoutServise.AddProduct(milk_7);
+            checkoutServise.AddProduct(milk_7);
             checkoutServise.AddProduct(bread_3);
 
 
-            checkoutServise.UseOffer(new FactorByCategoryOffer(Category.MILK, 2));
+            checkoutServise.AddOffer(new FactorByCategoryOffer(Category.MILK, 2));
+            Check check = checkoutServise.closeCheck();
+
+            Assert.Equal(check.GetTotalPoints(), 31);
+        }
+
+        [Fact]
+        public void useOffer_BeforeEndOfAddProduction()
+        {
+            checkoutServise.AddProduct(milk_7);
+            checkoutServise.AddOffer(new FactorByCategoryOffer(Category.MILK, 2));
+            checkoutServise.AddProduct(milk_7);
+            checkoutServise.AddProduct(bread_3);
+
+
+            
             Check check = checkoutServise.closeCheck();
 
             Assert.Equal(check.GetTotalPoints(), 31);
