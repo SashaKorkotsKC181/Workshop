@@ -7,6 +7,7 @@ namespace oop_workshop_master
     {
         Check check;
         List<Offer> offers;
+        
 
         public void openCheck()
         {
@@ -35,8 +36,9 @@ namespace oop_workshop_master
             offers.Add(offer);
         }
 
-        void UseOffer(Offer offer)
+        public void UseOffer(Offer offer)
         {
+
             offer.Apply(check);
         }
         void UseOffers()

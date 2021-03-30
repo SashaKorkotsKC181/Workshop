@@ -7,6 +7,7 @@ namespace oop_workshop_master
         internal readonly Category category;
         internal readonly int factor;
         internal readonly Trademark trademark;
+        int points;
         public FactorByCategoryOffer(Trademark trademark, DateTime endOfValidity ) : base(endOfValidity)
         {
             this.trademark = trademark;
@@ -16,14 +17,15 @@ namespace oop_workshop_master
             this.category = category;
             this.factor = factor;
         }
-        public override void Apply(Check check)
+
+        internal override bool Condition(Check check)
         {
-            int points = check.getCostByCategory(this.category);
+            return check.getCostByCategory(this.category) > 0;
+        }
 
-            check.AddPoints(points * (this.factor - 1));
-
-            check.AddPoints(check.getCostByTrademark(this.trademark));
-
+        internal override int HowMuchPoints(Check check)
+        {
+            return check.getCostByCategory(this.category) * (this.factor - 1);
         }
     }
 }

@@ -5,9 +5,10 @@ namespace oop_workshop_master
 {
     public class Check
     {
-        List<Product> products = new List<Product>();
-
+        List<Product> products = new List<Product>();        
         int points = 0;
+        int discont = 0;
+        Check check;
         public int GetTotalCost()
         {
             int totalCost = 0;
@@ -15,7 +16,7 @@ namespace oop_workshop_master
             {
                 totalCost += product.price;
             }
-            return totalCost;
+            return totalCost - this.discont;
         }
 
         internal void AddProduct(Product product)
@@ -23,6 +24,49 @@ namespace oop_workshop_master
             products.Add(product);
         }
 
+        internal void AddDiscont(int discont)
+        {
+            this.discont += discont;
+        }
+
+        public int GetTotalPoints()
+        {
+            return GetTotalCost() + points;
+        }
+
+        internal void AddPoints(int points)
+        {
+            this.points += points;
+        }
+
+        internal int getCostByCategory(Category category)
+        {
+            if (category == Category.NONE)
+            {
+                return 0;
+            }
+            int costOfCategoty = 0;
+            foreach (Product prod in this.products)
+            {
+                if (prod.category == category)
+                {
+                    costOfCategoty += prod.price;
+                }
+            }
+            return costOfCategoty;
+        }
+        internal int getCostByProduct(Product product)
+        {
+            int costOfProduct = 0;
+            foreach (Product prod in this.products)
+            {
+                if (prod.IsExactly(product))
+                {
+                    costOfProduct += prod.price;
+                }
+            }
+            return costOfProduct;
+        }
         internal int getCostByTrademark(Trademark trademark)
         {
             if (trademark == Trademark.NONE)
@@ -38,33 +82,6 @@ namespace oop_workshop_master
                 }
             }
             return costOfTrademark;
-        }
-
-        public int GetTotalPoints()
-        {
-            return GetTotalCost() + points;
-        }
-
-        internal void AddPoints(int points)
-        {
-            this.points += points; 
-        }
-
-        internal int getCostByCategory(Category category)
-        {
-            if (category == Category.NONE)
-            {
-                return 0;
-            }
-            int costOfCategoty = 0;
-            foreach (Product prod in this.products)
-            {
-                if (prod.catagory == category)
-                {
-                    costOfCategoty += prod.price;
-                }
-            }
-            return costOfCategoty;
         }
     }
 }

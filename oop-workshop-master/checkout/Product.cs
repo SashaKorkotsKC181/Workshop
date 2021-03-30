@@ -5,14 +5,18 @@ namespace oop_workshop_master
     {
         internal readonly int price;
         internal readonly string name;
-        internal readonly Category catagory;
+        internal readonly Category category;
         internal readonly Trademark trademark;
 
         public Product(int price, string name, Category category)
         {
             this.price = price;
             this.name = name;
-            this.catagory = category;
+            this.category = category;
+        }
+        public Product(int price, string name, Trademark trademark) : this (price, name)
+        {
+            this.trademark = trademark;
         }
         public Product(int price, string name)
         {
@@ -24,5 +28,11 @@ namespace oop_workshop_master
         {
             this.trademark = trademark;
         }
+
+        internal bool IsExactly(Product product)
+        {
+            return this.name == product.name && this.price == product.price && this.trademark == product.trademark && this.category == product.category;
+
+        } 
     }
 }

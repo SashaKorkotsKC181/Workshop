@@ -4,154 +4,37 @@ using oop_workshop_master;
 
 namespace Tests
 {
-    public class ChekoutTesk
+    public class CheckoutTesk
     {
-        Product milk_7 = new Product(7, "Milk", Category.MILK);
-        Product bread_3 = new Product(3, "Bread");
-        CheckoutServise checkoutServise = new CheckoutServise();
-
-        [Fact]
-        void closeCheck_withAddProduct()
+        private Product milk_7;
+        private CheckoutServise checkoutService;
+        private Product bread_3;
+        public CheckoutTesk()
         {
-
-
-            checkoutServise.AddProduct(milk_7);
-            Check check = checkoutServise.closeCheck();
-            Assert.Equal(7, check.GetTotalCost());
+            checkoutService = new CheckoutServise();
+            milk_7 = new Product(7, "Milk", Category.MILK, Trademark.FARM);
+            bread_3 = new Product(3, "Bread", Trademark.FARM);
         }
 
         [Fact]
-        void closeCheck_withAddTwoProducts()
+        public void useOfferDiscand_AddPoins()
         {
-
-            checkoutServise.AddProduct(milk_7);
-
-            checkoutServise.AddProduct(bread_3);
-            Check check = checkoutServise.closeCheck();
-
-            Assert.Equal(10, check.GetTotalCost());
+            checkoutService.AddProduct(milk_7);
+            checkoutService.AddProduct(milk_7);
+            checkoutService.AddProduct(bread_3);
+            checkoutService.UseOffer(new BonusOffer(new DateTime(2023, 01, 02), new ByCategory(Category.BREAD), new FlatReward(40)));
+            Check check = checkoutService.CloseCheck();
+            Assert.Equal(57, check.GetTotalPoints());
         }
-
         [Fact]
-        void AddProduct_whenCHeckIsCLosed_opensNewCheck()
+        void UseDiscountOffer()
         {
-
-
-            checkoutServise.AddProduct(milk_7);
-            Check checkMilk = checkoutServise.closeCheck();
-            Assert.Equal(7, checkMilk.GetTotalCost());
-
-            checkoutServise.AddProduct(bread_3);
-            Check checkBread = checkoutServise.closeCheck();
-            Assert.Equal(3, checkBread.GetTotalCost());
-        }
-
-        [Fact]
-        void closeCheck_calcTOtalPoints()
-        {
-
-            checkoutServise.AddProduct(milk_7);
-            checkoutServise.AddProduct(bread_3);
-            Check check = checkoutServise.closeCheck();
-
-            Assert.Equal(10, check.GetTotalPoints());
-        }
-
-        [Fact]
-        void useOffer_addOfferPoints()
-        {
-
-            checkoutServise.AddProduct(milk_7);
-            checkoutServise.AddProduct(bread_3);
-
-
-            checkoutServise.AddOffer(new AnyGoodOffer(6, 2, new DateTime(2021,3,31)));
-            Check check = checkoutServise.closeCheck();
-
-            Assert.Equal(12, check.GetTotalPoints());
-        }
-
-        [Fact]
-        void useOffer_whenCostLessThanRequired_doNothing()
-        {
-            checkoutServise.AddProduct(bread_3);
-
-
-            checkoutServise.AddOffer(new AnyGoodOffer(6, 2, new DateTime(2021,3,31)));
-            Check check = checkoutServise.closeCheck();
-
-            Assert.Equal(3, check.GetTotalPoints());
-        }
-
-        [Fact]
-        void useOffer_factorByCategory()
-        {
-            checkoutServise.AddProduct(milk_7);
-            checkoutServise.AddProduct(milk_7);
-            checkoutServise.AddProduct(bread_3);
-
-
-            checkoutServise.AddOffer(new FactorByCategoryOffer(Category.MILK, 2, new DateTime(2021,3,31)));
-            Check check = checkoutServise.closeCheck();
-
-            Assert.Equal(31, check.GetTotalPoints());
-        }
-
-        [Fact]
-        public void useOffer_BeforeEndOfAddProduction()
-        {
-            checkoutServise.AddProduct(milk_7);
-            checkoutServise.AddOffer(new FactorByCategoryOffer(Category.MILK, 2, new DateTime(2021,3,31)));
-            checkoutServise.AddProduct(milk_7);
-            checkoutServise.AddProduct(bread_3);
-
-
-            
-            Check check = checkoutServise.closeCheck();
-
-            Assert.Equal(31, check.GetTotalPoints());
-        }
-
-        [Fact]
-        public void useOffer_IfVarity()
-        {
-            checkoutServise.AddProduct(milk_7);
-            checkoutServise.AddOffer(new FactorByCategoryOffer(Category.MILK, 2, new DateTime(2021,3,31)));
-            checkoutServise.AddProduct(milk_7);
-            checkoutServise.AddProduct(bread_3);
-
-
-            
-            Check check = checkoutServise.closeCheck();
-
-            Assert.Equal(31, check.GetTotalPoints());
-        }
-
-        [Fact]
-        public void useOffer_factorByTrademarkOrCategory()
-        {
-            Product milk_5_Farm = new Product(5,"childrenMilk",Category.MILK,Trademark.FARM);
-            checkoutServise.AddProduct(milk_5_Farm);
-            checkoutServise.AddProduct(milk_7);
-            checkoutServise.AddOffer(new FactorByCategoryOffer(Trademark.FARM,new DateTime(2021,3,31)));
-            
-
-            Check check = checkoutServise.closeCheck();
-            Assert.Equal(17, check.GetTotalPoints());
-        }
-
-        [Fact]
-        public void useOffer_Discand()
-        {
-            Product milk_5_Farm = new Product(5,"childrenMilk",Category.MILK,Trademark.FARM);
-            checkoutServise.AddProduct(milk_5_Farm);
-            checkoutServise.AddProduct(milk_7);
-            checkoutServise.AddProduct(bread_3);
-            checkoutServise.AddOffer(new DiscanOffer(Category.MILK,50 ,new DateTime(2021,3,31)));
-            
-
-            Check check = checkoutServise.closeCheck();
-            Assert.Equal(9, check.GetTotalPoints());
+            checkoutService.AddProduct(milk_7);
+            checkoutService.AddProduct(milk_7);
+            checkoutService.AddProduct(bread_3);
+            checkoutService.UseOffer(new DiscountOffer(new DateTime(2023, 01, 02), new ByTradeMark(TM.PROSTOKWASHINO), new PercentDiscount(50)));
+            Check check = checkoutService.CloseCheck();
+            Assert.Equal(11, check.GetTotalPoints());
         }
     }
 }
