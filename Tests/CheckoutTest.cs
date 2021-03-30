@@ -132,11 +132,26 @@ namespace Tests
         {
             Product milk_5_Farm = new Product(5,"childrenMilk",Category.MILK,Trademark.FARM);
             checkoutServise.AddProduct(milk_5_Farm);
+            checkoutServise.AddProduct(milk_7);
             checkoutServise.AddOffer(new FactorByCategoryOffer(Trademark.FARM,new DateTime(2021,3,31)));
             
 
             Check check = checkoutServise.closeCheck();
-            Assert.Equal(10, check.GetTotalPoints());
+            Assert.Equal(17, check.GetTotalPoints());
+        }
+
+        [Fact]
+        public void useOffer_Discand()
+        {
+            Product milk_5_Farm = new Product(5,"childrenMilk",Category.MILK,Trademark.FARM);
+            checkoutServise.AddProduct(milk_5_Farm);
+            checkoutServise.AddProduct(milk_7);
+            checkoutServise.AddProduct(bread_3);
+            checkoutServise.AddOffer(new DiscanOffer(Category.MILK,50 ,new DateTime(2021,3,31)));
+            
+
+            Check check = checkoutServise.closeCheck();
+            Assert.Equal(9, check.GetTotalPoints());
         }
     }
 }

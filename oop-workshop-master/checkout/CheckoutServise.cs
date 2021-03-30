@@ -5,7 +5,7 @@ namespace oop_workshop_master
 {
     public class CheckoutServise
     {
-        private Check check;
+        Check check;
         List<Offer> offers;
 
         public void openCheck()

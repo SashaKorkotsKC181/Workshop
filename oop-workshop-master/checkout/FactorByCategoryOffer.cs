@@ -4,9 +4,9 @@ namespace oop_workshop_master
 {
     public class FactorByCategoryOffer : Offer
     {
-        public Category category;
-        public int factor;
-        internal Trademark trademark;
+        internal readonly Category category;
+        internal readonly int factor;
+        internal readonly Trademark trademark;
         public FactorByCategoryOffer(Trademark trademark, DateTime endOfValidity ) : base(endOfValidity)
         {
             this.trademark = trademark;

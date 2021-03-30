@@ -3,10 +3,10 @@ namespace oop_workshop_master
 {
     public class Product
     {
-        public int price;
-        public string name;
-        public Category catagory;
-        public Trademark trademark;
+        internal readonly int price;
+        internal readonly string name;
+        internal readonly Category catagory;
+        internal readonly Trademark trademark;
 
         public Product(int price, string name, Category category)
         {

@@ -5,7 +5,7 @@ namespace oop_workshop_master
 {
     public class Check
     {
-        private List<Product> products = new List<Product>();
+        List<Product> products = new List<Product>();
 
         int points = 0;
         public int GetTotalCost()
@@ -52,6 +52,10 @@ namespace oop_workshop_master
 
         internal int getCostByCategory(Category category)
         {
+            if (category == Category.NONE)
+            {
+                return 0;
+            }
             int costOfCategoty = 0;
             foreach (Product prod in this.products)
             {
