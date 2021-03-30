@@ -65,7 +65,7 @@ namespace Tests
             checkoutServise.AddProduct(bread_3);
 
 
-            checkoutServise.AddOffer(new AnyGoodOffer(6, 2));
+            checkoutServise.AddOffer(new AnyGoodOffer(6, 2, new DateTime(2021,3,31)));
             Check check = checkoutServise.closeCheck();
 
             Assert.Equal(check.GetTotalPoints(), 12);
@@ -77,7 +77,7 @@ namespace Tests
             checkoutServise.AddProduct(bread_3);
 
 
-            checkoutServise.AddOffer(new AnyGoodOffer(6, 2));
+            checkoutServise.AddOffer(new AnyGoodOffer(6, 2, new DateTime(2021,3,31)));
             Check check = checkoutServise.closeCheck();
 
             Assert.Equal(check.GetTotalPoints(), 3);
@@ -91,7 +91,7 @@ namespace Tests
             checkoutServise.AddProduct(bread_3);
 
 
-            checkoutServise.AddOffer(new FactorByCategoryOffer(Category.MILK, 2));
+            checkoutServise.AddOffer(new FactorByCategoryOffer(Category.MILK, 2, new DateTime(2021,3,31)));
             Check check = checkoutServise.closeCheck();
 
             Assert.Equal(check.GetTotalPoints(), 31);
@@ -101,7 +101,22 @@ namespace Tests
         public void useOffer_BeforeEndOfAddProduction()
         {
             checkoutServise.AddProduct(milk_7);
-            checkoutServise.AddOffer(new FactorByCategoryOffer(Category.MILK, 2));
+            checkoutServise.AddOffer(new FactorByCategoryOffer(Category.MILK, 2, new DateTime(2021,3,31)));
+            checkoutServise.AddProduct(milk_7);
+            checkoutServise.AddProduct(bread_3);
+
+
+            
+            Check check = checkoutServise.closeCheck();
+
+            Assert.Equal(check.GetTotalPoints(), 31);
+        }
+
+        [Fact]
+        public void useOffer_IfVarity()
+        {
+            checkoutServise.AddProduct(milk_7);
+            checkoutServise.AddOffer(new FactorByCategoryOffer(Category.MILK, 2, new DateTime(2021,3,31)));
             checkoutServise.AddProduct(milk_7);
             checkoutServise.AddProduct(bread_3);
 

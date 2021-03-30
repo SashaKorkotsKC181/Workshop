@@ -7,7 +7,7 @@ namespace oop_workshop_master
         public Category category;
         public int factor;
 
-        public FactorByCategoryOffer(Category category, int factor)
+        public FactorByCategoryOffer(Category category, int factor, DateTime endOfValidity ) : base(endOfValidity)
         {
             this.category = category;
             this.factor = factor;
