@@ -23,6 +23,23 @@ namespace oop_workshop_master
             products.Add(product);
         }
 
+        internal int getCostByTrademark(Trademark trademark)
+        {
+            if (trademark == Trademark.NONE)
+            {
+                return 0;
+            }
+            int costOfTrademark = 0;
+            foreach (Product prod in this.products)
+            {
+                if (prod.trademark == trademark)
+                {
+                    costOfTrademark += prod.price;
+                }
+            }
+            return costOfTrademark;
+        }
+
         public int GetTotalPoints()
         {
             return GetTotalCost() + points;
